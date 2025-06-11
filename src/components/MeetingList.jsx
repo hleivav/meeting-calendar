@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { Table, Pagination } from "react-bootstrap";
 
-const MeetingList = () => {
+const MeetingList = ({meetings, onDeleteMeeting, onEditMeeting}) => {
   // Dummy array that creates 15 random objects
-  const meetings = Array.from({ length: 15 }, (_, i) => ({
+  /*const meetings = Array.from({ length: 15 }, (_, i) => ({
     id: i + 1,
     title: `Meeting ${i + 1}`,
     date: `2025-06-${String(i + 1).padStart(2, "0")}`,
     time: `${9 + (i % 5)}:00 AM`,
     level: ["Beginner", "Intermediate", "Advanced", "Expert"][i % 4],
-  }));
+  }));*/
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
@@ -48,10 +48,14 @@ const MeetingList = () => {
                   <td>{meeting.time}</td>
                   <td>{meeting.level}</td>
                   <td>
-                    <button className="btn btn-warning btn-sm me-2">
+                    <button className="btn btn-warning btn-sm me-2"
+                      onClick={()=> onEditMeeting(meeting)}
+                    >
                       <i className="fas fa-edit"></i>
                     </button>
-                    <button className="btn btn-danger btn-sm">
+                    <button className="btn btn-danger btn-sm"
+                    onClick={() => onDeleteMeeting(meeting.id)}
+                    >
                       <i className="fas fa-trash"></i>
                     </button>
                   </td>
