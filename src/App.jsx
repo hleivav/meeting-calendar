@@ -6,6 +6,8 @@ import MeetingForm from "./components/MeetingForm";
 import MeetingList from "./components/MeetingList"; 
 import Footer from "./components/Footer";
 
+console.log("app loaded"); 
+
 const App = () => {
   const [meetings, setMeetings] = useState([]); 
   const [editingMeeting, setEditingMeeting] = useState(null); 
