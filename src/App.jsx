@@ -1,37 +1,66 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import "./App.css";
 import MeetingForm from "./components/MeetingForm";
 import MeetingList from "./components/MeetingList"; 
 import Footer from "./components/Footer";
+import axios from "axios";
+
+const apiUrl = "/api/meetings"; 
 
 console.log("app loaded"); 
 
 const App = () => {
   const [meetings, setMeetings] = useState([]); 
   const [editingMeeting, setEditingMeeting] = useState(null); 
+
+  //Function for fetching all meetings
+  useEffect(() => {
+    const fetchMeetings = async () => {
+      try {
+        const response = await axios.get(apiUrl);
+        setMeetings(response.data);
+      } catch (error) {
+        console.error("Error fetching meetings:", error);
+      }
+    };
+    fetchMeetings();
+  }, []);
   
   //Function for updating a meetring
-  const updateMeeting = (updateMeeting)=>{
-    setMeetings(prevMeetings =>
-      prevMeetings.map(meetting =>
-        meetting.id === updateMeeting.id ? updateMeeting: meetting
-      )
-    ); 
-  }; 
+  const updateMeeting = async (meetingData) => {
+    console.log("Data skickas till backend:", meetingData);
+    try {
+      await axios.put(`${apiUrl}/${meetingData.id}`, meetingData);
+      setMeetings(prev =>
+        prev.map(m => (m.id === meetingData.id ? meetingData : m))
+      );
+      setEditingMeeting(null);
+    } catch (error) {
+      console.error("Error updating meeting:", error);
+    }
+  };
 
   // Function for deleting a meeting
-  const deleteMeeting = (id) => {
-    setMeetings(prevMeetings => prevMeetings.filter(meeting => meeting.id !==id)); 
-  }; 
+  const deleteMeeting = async (id) => {
+    try {
+      await axios.delete(`${apiUrl}/${id}`);
+      setMeetings(prev => prev.filter(m => m.id !== id));
+    } catch (error) {
+      console.error("Error deleting meeting:", error);
+    }
+  };
 
   // Function for adding a new meeting.
-  const addMeeting = (meeting) =>{
-    setMeetings(prevMeetings => [
-      ...prevMeetings,
-      { ...meeting, id: prevMeetings.length + 1 }
-    ]);
+  const addMeeting = async (meetingData) => {
+     console.log("Data skickas till backend:", meetingData);
+    try {
+      const response = await axios.post(apiUrl, meetingData);
+      setMeetings(prev => [...prev, response.data]);
+    } catch (error) {
+      console.error("Error adding meeting:", error);
+    }
   };
 
   return (
