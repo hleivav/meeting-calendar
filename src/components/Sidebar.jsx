@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   return (
@@ -13,13 +14,16 @@ const Sidebar = () => {
         <div className="card-body p-0">
           <ul className="list-group">
             <li className="list-group-item d-flex align-items-center">
-              <i className="fas fa-calendar-alt me-2"></i> Meetings
+              <i className="fas fa-calendar-alt me-2"></i>
+              <Link to="/dashboard/meetings" className="text-decoration-none ms-2">Meetings</Link>
             </li>
             <li className="list-group-item d-flex align-items-center">
-              <i className="fas fa-users me-2"></i> Users
+              <i className="fas fa-users me-2"></i>
+              <Link to="/dashboard/users" className="text-decoration-none ms-2">Users</Link>
             </li>
             <li className="list-group-item d-flex align-items-center">
-              <i className="fas fa-calendar me-2"></i> Calendar
+              <i className="fas fa-calendar me-2"></i>
+              <Link to="/dashboard/calendar" className="text-decoration-none ms-2">Calendar</Link>
             </li>
           </ul>
         </div>
