@@ -1,12 +1,111 @@
-# React + Vite
+Meeting Calendar
+A modern React application for managing meetings, users, and a calendar. The project features a dashboard layout with navigation, meeting CRUD operations, and several informational pages.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Features
+Dashboard Layout with Navbar and Sidebar
 
-Currently, two official plugins are available:
+Meeting Management: Create, update, delete, and list meetings
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+User Management (Users Page)
 
-## Expanding the ESLint configuration
+Calendar View
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Informational Pages: Home, About, Services, Contact
+
+Responsive Design using Bootstrap
+
+API Integration with Axios
+
+Tech Stack
+React 19
+
+React Router DOM 7
+
+Bootstrap 5
+
+Axios
+
+Vite (for development and build tooling)
+
+FontAwesome (icons)
+
+Getting Started
+Prerequisites
+Node.js (v18 or higher recommended)
+
+npm or yarn
+
+Installation
+Clone the repository:
+
+bash
+git clone https://github.com/your-username/meeting-calendar.git
+cd meeting-calendar
+Install dependencies:
+
+bash
+npm install
+# or
+yarn install
+Start the development server:
+
+bash
+npm run dev
+# or
+yarn dev
+Open your browser:
+Visit http://localhost:5173 (default Vite port).
+
+Build for Production
+bash
+npm run build
+Lint the Code
+bash
+npm run lint
+Preview Production Build
+bash
+npm run preview
+Project Structure
+text
+src/
+  components/
+    Navbar.jsx
+    Sidebar.jsx
+    MeetingForm.jsx
+    MeetingList.jsx
+    Footer.jsx
+    HomePage.jsx
+    AboutPage.jsx
+    ServicesPage.jsx
+    ContactPage.jsx
+    UsersPage.jsx
+    CalendarPage.jsx
+  App.jsx
+  App.css
+  main.jsx
+public/
+  vite.svg
+index.html
+API
+The app expects an API for meetings at /api/meetings.
+Endpoints used:
+
+GET /api/meetings – Fetch all meetings
+
+POST /api/meetings – Add a new meeting
+
+PUT /api/meetings/:id – Update a meeting
+
+DELETE /api/meetings/:id – Delete a meeting
+
+Note: You need to provide a backend API for full functionality.
+
+Customization
+Update or add pages/components in src/components.
+
+Adjust styles in src/App.css or add your own CSS/SCSS files.
+
+Change the API endpoint in App.jsx if needed.
+
+Dependencies
+See package.json for the full list.
